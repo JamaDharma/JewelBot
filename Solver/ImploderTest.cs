@@ -161,5 +161,34 @@ namespace Solver
 			
 			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], game.Board[i,j], "i:"+i+" j:"+j));
 		}
+
+		[Test]
+		public void Chess()
+		{
+			byte[,] map = new byte[,]{
+				{0,0,0,3,0,0,0,0},
+				{0,0,4,0,0,0,0,0},
+				{0,5,0,1,0,0,0,0},
+				{6,0,2,0,0,0,0,0},
+				{0,3,0,4,0,0,0,0},
+				{4,0,3,0,0,0,0,0},
+				{0,2,0,0,0,0,0,0},
+				{1,0,0,0,0,0,0,0},			};
+			byte[,] mapRes = new byte[,]{
+				{0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0},
+				{6,5,4,3,0,0,0,0},
+				{4,3,2,1,0,0,0,0},
+				{1,2,3,4,0,0,0,0},
+			};
+			var game = new Game(map);
+			
+			game.Implode();
+			
+			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], game.Board[i,j], "i:"+i+" j:"+j));
+		}
 	}
 }

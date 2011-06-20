@@ -35,7 +35,7 @@ namespace Solver
 		void HorizontalMark()
 		{
 			for(int i =0; i<8;i++)
-				for(int j=0; j<8;)
+				for(int j=0; j<6;)
 			{
 				int count = Walk(i,j,0,1);
 				if(count >= 3)
@@ -46,7 +46,7 @@ namespace Solver
 		void VerticallMark()
 		{
 			for(int j =0; j<8;j++)
-				for(int i=0; i<8;)
+				for(int i=0; i<6;)
 			{
 				int count = Walk(i,j,1,0);
 				if(count >= 3)

@@ -49,6 +49,7 @@
     <Compile Include="Explosions.cs" />
     <Compile Include="ExplosionsTest.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="GameTest.cs" />
     <Compile Include="Imploder.cs" />
     <Compile Include="ImploderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

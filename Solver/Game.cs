@@ -38,7 +38,18 @@ namespace Solver
 			imploder.Implode();
 		}
 		
-		
+		public int Run()
+		{
+			int turn = 1;
+			int score = 0;
+			int turnScore;
+			while((turnScore = exploder.Explode())>0)
+			{
+				score += turnScore* turn++;
+				imploder.Implode();
+			}
+			return score;
+		}
 	}
 		
 }
