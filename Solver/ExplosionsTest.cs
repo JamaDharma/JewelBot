@@ -15,6 +15,16 @@ namespace Solver
 	public class ExplosionsTest
 	{
 		[Test]
+		public void Empty()
+		{
+			var explosions = new Explosions();
+			
+			Assert.AreEqual(0, explosions.Harvest());
+
+			explosions.Clear();
+		}
+
+		[Test]
 		public void OneRange()
 		{
 			var explosions = new Explosions();

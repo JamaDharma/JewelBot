@@ -8,27 +8,10 @@
  */
 using System;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Solver
 {
-	enum Coin : int
-    {
-        None=0,
-        Black =1,
-        Red=2,
-        Yellow=3,
-        Blue=4,
-        Green=5,
-        Purple=6
-    }
-	
 
-
-		
-	
-	
-	
 	/// <summary>
 	/// Description of Game.
 	/// </summary>
@@ -36,18 +19,26 @@ namespace Solver
 	{
 		public Board Board{get; private set;}
 		Exploder exploder;
-		
+		Imploder imploder;
 		
 		public Game(byte[,] map)
 		{
 			Board = new Board(map);
 			exploder = new Exploder(Board);
+			imploder = new Imploder(Board);
 		}
 		
-		public int Explode()
+		internal int Explode()
 		{
 			return exploder.Explode();
 		}
+		
+		internal void Implode()
+		{
+			imploder.Implode();
+		}
+		
+		
 	}
 		
 }

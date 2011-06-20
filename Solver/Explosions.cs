@@ -25,7 +25,6 @@ namespace Solver
 		
 		public void AddRange(int i1, int j1, int i2, int j2)
 		{
-			count++;
 			var range = new List<Tuple<int, int>>();
 			for (int i = i1; i<=i2; i++)
 				for (int j = j1; j<=j2; j++)
@@ -39,14 +38,14 @@ namespace Solver
 				.ForEach(k=>_lia[k]=count);
 			
 			range.ForEach(k=>_lia[k]=count);
+			count++;
 		}
 		
 		public int Harvest()
 		{
-			var powers = new int[count+1];
+			var powers = new int[count];
 			foreach(int id in _lia.Values)
 				powers[id]++;
-			
 			return powers.Where(power=>power>0)
 				.Aggregate(0,(score,power)=>score+(power-2)*30);
 		}
