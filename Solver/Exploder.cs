@@ -8,6 +8,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,6 +17,8 @@ namespace Solver
 
 	class Exploder
 	{
+		static readonly Size HOffset = new Size(0,1);
+		static readonly Size VOffset = new Size(1,0);
 		
 		Board _board;
 		Explosions _explosions;
@@ -26,38 +29,36 @@ namespace Solver
 			_explosions = new Explosions();
 		}
 
-		int Walk(int i0, int j0, int di, int dj)
+		int Walk(Point start, Size offset)
 		{
-			if(_board.SameColour(i0,j0,i0+di,j0+dj))
-				return 1 + Walk(i0+di, j0+dj, di, dj);
+			Point next = start+offset;
+			if(_board.SameColour(start,next))
+				return 1 + Walk(next, offset);
 			return 1;
+		}
+		int Mark(Point start, Size offset)
+		{
+			int count = Walk(start, offset);
+			if(count >= 3)
+				_explosions.AddRange(start.X, start.Y, start.X+offset.Width*(count-1), start.Y+offset.Height*(count-1));
+			return count;
 		}
 		void HorizontalMark()
 		{
-			for(int i =0; i<8;i++)
-				for(int j=0; j<6;)
-			{
-				int count = Walk(i,j,0,1);
-				if(count >= 3)
-					_explosions.AddRange(i, j, i, j+count-1);
-				j+=count;
-			}
+			for(Point curr = new Point(0,0); curr.X < 8; curr.X++)
+				for(curr.Y=0;curr.Y < 6; curr.Y+=Mark(curr, HOffset))
+					;
 		}
 		void VerticallMark()
 		{
-			for(int j =0; j<8;j++)
-				for(int i=0; i<6;)
-			{
-				int count = Walk(i,j,1,0);
-				if(count >= 3)
-					_explosions.AddRange(i, j, i+count-1, j);
-				i+=count;
-			}
+			for(Point curr = new Point(0,0); curr.Y < 8; curr.Y++)
+				for(curr.X=0;curr.X < 6; curr.X+=Mark(curr, VOffset))
+					;
 		}
 		void UpdateBoard()
 		{
-			foreach(var t in _explosions.Range)
-				_board[t.Item1, t.Item2] = 0;
+			foreach(var p in _explosions.Range)
+				_board[p.X, p.Y] = 0;
 		}
 
 

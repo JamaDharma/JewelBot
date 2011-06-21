@@ -8,6 +8,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,19 +17,19 @@ namespace Solver
 	class Explosions
 	{
 		int count = 0;
-		Dictionary<Tuple<int, int>, int> _lia = new Dictionary<Tuple<int, int>, int>();
+		Dictionary<Point, int> _lia = new Dictionary<Point, int>();
 		
-		public IEnumerable<Tuple<int, int>> Range
+		public IEnumerable<Point> Range
 		{
 			get{return _lia.Keys;}
 		}
 		
 		public void AddRange(int i1, int j1, int i2, int j2)
 		{
-			var range = new List<Tuple<int, int>>();
+			var range = new List<Point>();
 			for (int i = i1; i<=i2; i++)
 				for (int j = j1; j<=j2; j++)
-					range.Add(Tuple.Create(i,j));
+					range.Add(new Point(i,j));
 			
 			var toSubstitute = range.Where(_lia.ContainsKey)
 				.Select(t=>_lia[t]).Distinct();

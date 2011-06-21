@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -31,6 +32,11 @@ namespace Solver
 		public Board(byte[,] map)
 		{
 			_map=map;
+		}
+
+		public bool SameColour(Point p1, Point p2)
+		{
+			return SameColour(p1.X, p1.Y, p2.X, p2.Y);
 		}
 
 		public bool SameColour(int i1, int j1, int i2, int j2)
