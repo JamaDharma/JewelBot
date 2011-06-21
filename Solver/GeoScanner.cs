@@ -26,38 +26,45 @@ namespace Solver
 			_board = board;
 		}
 		
-		void Add(Point f, Point p1, Point p2)
+		Action<Vector>  Add(byte colour, Point p)
 		{
-			if(_board.SameColour(f, p2))
-				_deposits.Add(new Move(p1, p2));
+			return off => {
+				var p2 = p + off;
+				if(_board.SameColour(colour, p2))
+					_deposits.Add(new Move(p, p2));
+			};
 		}
-		void AddMiddle(Point f, Point p, Vector off)
+		void AddMiddle(byte colour, Point p, Vector off)
 		{
-			Add(f, p, p + off.Mirror());
-			Add(f, p, p - off.Mirror());
+			var adder = Add(colour, p + off);
+			adder(off.Mirror());
+			adder(-off.Mirror());
 		}
-		void AddLeft(Point f, Point p, Vector off)
+		void AddLeft(byte colour, Point p, Vector off)
 		{
-			AddMiddle(f, p, off);
-			Add(f, p, p - off);
+			var adder = Add(colour, p - off);
+			adder(off.Mirror());
+			adder(-off.Mirror());
+			adder(-off);
 		}
-		void AddRight(Point f, Point p, Vector off)
+		void AddRight(byte colour, Point p, Vector off)
 		{
-			AddMiddle(f, p, off);
-			Add(f, p, p + off);
+			var adder = Add(colour, p + 2*off);
+			adder(off.Mirror());
+			adder(-off.Mirror());
+			adder(off);
 		}		
 		void Scan(Point first, Vector offset)
 		{
-			Func<Vector, bool> check = 
-				of => _board.SameColour(first,first+of);
+			var colour = _board[first];
 			
-			if(check(offset))
+			if(_board.SameColour(colour, first + offset))
 			{
-				AddLeft(first, first-offset, offset);
-				AddRight(first, first+2*offset, offset);
+				AddLeft(colour, first, offset);
+				AddRight(colour, first, offset);
 			}
-			if(check(2*offset))
-				AddMiddle(first, first+offset, offset);
+			if(_board.SameColour(colour, first + 2*offset))
+				AddMiddle(colour, first, offset);
 		}
 		
 		void HorizontalMark()
