@@ -8,7 +8,6 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,6 +21,11 @@ namespace Solver
 		public IEnumerable<Point> Range
 		{
 			get{return _lia.Keys;}
+		}
+
+		public void AddRange(Point start, Point end)
+		{
+			AddRange(start.X,start.Y,end.X,end.Y);
 		}
 		
 		public void AddRange(int i1, int j1, int i2, int j2)
