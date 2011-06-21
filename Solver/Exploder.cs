@@ -56,7 +56,7 @@ namespace Solver
 		void UpdateBoard()
 		{
 			foreach(var p in _explosions.Range)
-				_board[p.X, p.Y] = 0;
+				_board[p] = 0;
 		}
 
 

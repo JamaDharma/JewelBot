@@ -67,21 +67,22 @@ namespace Solver
 				AddMiddle(colour, first, offset);
 		}
 		
-		void HorizontalMark()
+		void ScanAll()
 		{
-			for(int i = 0; i < 8; i++)
-				for(int j = 0; j < 8; j ++)
-			{
-				Scan(new Point(i,j), Offset.Horizontal);
-				Scan(new Point(i,j), Offset.Vertical);
-			}
-					
+			Board.WalkMap(p =>
+			              {
+			              	if (_board[p]>0)
+			              	{
+			              		Scan(p, Offset.Horizontal);
+			              		Scan(p, Offset.Vertical);
+			              	}
+			              });
 		}
 		
 		public IEnumerable<Move> GetDeposits()
 		{
 			_deposits.Clear();
-			HorizontalMark();
+			ScanAll();
 			return _deposits;
 		}
 	}
