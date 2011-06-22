@@ -8,6 +8,7 @@
  */
 using System;
 using System.Linq;
+using System.Numerics;
 
 namespace Solver
 {
@@ -86,6 +87,14 @@ namespace Solver
 
 			return String.Join("", Enumerable.Range(0, 8).Select(printLine).ToArray());
 		}
-
+		
+		public BigInteger GetCode()
+		{
+			BigInteger code = 0;
+			
+			Board.WalkMap((i,j)=> code = (code<<3)+_map[i,j]);
+			
+			return code;
+		}
 	}
 }

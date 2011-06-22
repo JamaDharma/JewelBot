@@ -8,6 +8,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 
 namespace Solver
 {
@@ -15,6 +16,14 @@ namespace Solver
 	{
 		public int Score = 0;
 		public Stack<Move> Moves = new Stack<Move>();
+		
+		public Solution Copy()
+		{
+			var s = new Solution();
+			s.Score = Score;
+			s.Moves = new Stack<Move>(Moves);
+			return s;
+		}
 	}
 	/// <summary>
 	/// Description of Solver.
@@ -23,6 +32,7 @@ namespace Solver
 	{
 		public static int Count = 0;
 		public static int Limit = 3;
+		public static readonly Dictionary<BigInteger, Solution> Cash = new Dictionary<BigInteger, Solution>();
 
 		public static int Result(Board board, IEnumerable<Move> moves)
 		{
@@ -49,16 +59,25 @@ namespace Solver
 		}
 		public Solution Solve(int deepness)
 		{
-			Count++;
 			deepness++;
 			int score = new Game(_board).Run();
+			var bcode = _board.GetCode();
 			Solution bestSolution = new Solution();
+			if(Cash.TryGetValue(bcode, out bestSolution))
+			{
+				bestSolution = bestSolution.Copy();
+				bestSolution.Score += score;
+				return bestSolution;
+			}
 			
+			bestSolution = new Solution();
 			if(deepness > Limit)
 			{
 				bestSolution.Score += score;
 				return bestSolution;
 			}
+			
+			Count++;
 			
 			var moves = new GeoScanner(_board).GetDeposits();
 
@@ -75,9 +94,14 @@ namespace Solver
 				}
 			}
 			
-			bestSolution.Score += score;
-			if((object)bestMove != null)
+			
+			if(bestSolution.Score != 0)
 				bestSolution.Moves.Push(bestMove);
+			
+			Cash.Add(bcode, bestSolution.Copy());
+			
+			bestSolution.Score += score;
+
 			
 			return bestSolution;
 		}
