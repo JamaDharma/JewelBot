@@ -36,6 +36,9 @@ namespace Solver
 		int Mark(Point start, Vector offset)
 		{
 			var colour = _board[start];
+			if(colour == 0)
+				return 1;
+			
 			int count = Walk(colour, start, offset);
 			if(count >= 3)
 				_explosions.AddRange(start, start+offset*(count-1));
