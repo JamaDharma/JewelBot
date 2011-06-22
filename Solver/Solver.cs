@@ -21,7 +21,23 @@ namespace Solver
 	/// </summary>
 	public class Solver
 	{
+		public static int Count = 0;
+		public static int Limit = 3;
+
+		public static int Result(Board board, IEnumerable<Move> moves)
+		{
+			var game = new Game(board);
+			int score = game.Run();
+			foreach(var move in moves)
+			{
+				move.MoveBoard(board);
+				score+=game.Run();
+			}
+			return score;
+		}
+		
 		Board _board;
+		
 		public Solver(Board board)
 		{
 			_board = board;
@@ -29,16 +45,28 @@ namespace Solver
 		
 		public Solution Solve()
 		{
+			return Solve(0);
+		}
+		public Solution Solve(int deepness)
+		{
+			deepness++;
 			int score = new Game(_board).Run();
+			Solution bestSolution = new Solution();
+			
+			if(deepness > Limit)
+			{
+				bestSolution.Score += score;
+				return bestSolution;
+			}
+			
 			var moves = new GeoScanner(_board).GetDeposits();
 
 			Move bestMove = null;
-			Solution bestSolution = new Solution();
 			foreach(var move in moves)
 			{
 				Board t = _board.Copy();
 				move.MoveBoard(t);
-				var sol = new Solver(t).Solve();
+				var sol = new Solver(t).Solve(deepness);
 				if(sol.Score > bestSolution.Score)
 				{
 					bestSolution = sol;

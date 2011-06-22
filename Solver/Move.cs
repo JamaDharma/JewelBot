@@ -17,7 +17,7 @@ namespace Solver
 		
 		public Move(Point a, Point b)
 		{
-			if (a > b){
+			if (a < b){
 				A = a;
 				B = b;
 			}
@@ -52,5 +52,11 @@ namespace Solver
 		public override int GetHashCode() {
 			return (A.GetHashCode()<<8) ^ B.GetHashCode();
 	        } 
+				
+		public override string ToString()
+		{
+			return string.Format("({0}, {1})", A, B);
+		}
+
 	}
 }

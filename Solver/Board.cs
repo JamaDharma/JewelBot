@@ -7,7 +7,9 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Solver
@@ -32,7 +34,8 @@ namespace Solver
 		
 		public Board(byte[,] map)
 		{
-			_map=map;
+			_map = new byte[8,8];
+			Array.Copy(map,_map, map.Length);
 		}
 
 		public byte this[Point p]
@@ -74,12 +77,23 @@ namespace Solver
 			return false;
 		}
 		
-		
 		public Board Copy()
 		{
-			byte[,] t = new byte[8,8];
-			Array.Copy(_map,t, _map.Length);
-			return new Board(t);
+			return new Board(_map);
+		}
+		
+		public IEnumerable<string> Presentation
+		{
+			get
+			{
+				for (int i = 0; i < 8; i++)
+				{
+					var res = new StringBuilder();
+					for (int j = 0; j < 8; j++)
+						res.Append(" "+_map[i,j]);
+					yield return res.ToString();
+				}
+			}
 		}
 	}
 }
