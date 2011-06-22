@@ -21,9 +21,9 @@ namespace Solver
 		Exploder exploder;
 		Imploder imploder;
 		
-		public Game(byte[,] map)
+		public Game(Board board)
 		{
-			Board = new Board(map);
+			Board = board;
 			exploder = new Exploder(Board);
 			imploder = new Imploder(Board);
 		}

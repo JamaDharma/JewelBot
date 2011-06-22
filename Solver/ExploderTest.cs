@@ -40,7 +40,7 @@ namespace Solver
 				{0,0,0,0,0,0,0,0},
 				{1,2,1,0,0,0,0,0},
 			};			
-			var game = new Game(map);
+			var game = new Game(new Board(map));
 			
 			int score = game.Explode();
 			
@@ -71,7 +71,7 @@ namespace Solver
 				{0,0,0,0,0,0,0,0},
 				{0,0,0,0,0,0,0,0},
 			};			
-			var game = new Game(map);
+			var game = new Game(new Board(map));
 			
 			int score = game.Explode();
 			
@@ -102,7 +102,7 @@ namespace Solver
 				{0,0,0,0,0,0,0,0},
 				{0,0,0,0,0,0,0,0},
 			};			
-			var game = new Game(map);
+			var game = new Game(new Board(map));
 			
 			int score = game.Explode();
 			

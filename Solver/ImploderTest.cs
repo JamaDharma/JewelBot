@@ -38,7 +38,7 @@ namespace Solver
 				{0,0,0,0,0,0,0,0},
 				{0,0,0,0,0,0,0,0},
 			};			
-			var game = new Game(map);
+			var game = new Game(new Board(map));
 			
 			game.Implode();
 			
@@ -67,7 +67,7 @@ namespace Solver
 				{1,1,1,1,1,1,1,1},
 				{1,1,1,1,1,1,1,1},
 			};			
-			var game = new Game(map);
+			var game = new Game(new Board(map));
 			
 			game.Implode();
 			
@@ -96,7 +96,7 @@ namespace Solver
 				{0,0,0,0,0,0,0,0},
 				{0,0,1,2,1,0,0,0},
 			};			
-			var game = new Game(map);
+			var game = new Game(new Board(map));
 			
 			game.Implode();
 			
@@ -125,7 +125,7 @@ namespace Solver
 				{1,1,1,1,1,1,1,1},
 				{1,1,1,1,1,1,1,1},
 			};			
-			var game = new Game(map);
+			var game = new Game(new Board(map));
 			
 			game.Implode();
 			
@@ -155,7 +155,7 @@ namespace Solver
 				{1,0,0,0,5,2,0,3},
 				{4,0,1,0,1,1,1,1},
 			};			
-			var game = new Game(map);
+			var game = new Game(new Board(map));
 			
 			game.Implode();
 			
@@ -184,7 +184,7 @@ namespace Solver
 				{4,3,2,1,0,0,0,0},
 				{1,2,3,4,0,0,0,0},
 			};
-			var game = new Game(map);
+			var game = new Game(new Board(map));
 			
 			game.Implode();
 			

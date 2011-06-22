@@ -37,7 +37,7 @@ namespace Solver
 				{1,2,3,4,5,6,1,2},
 				{3,4,5,6,1,2,3,4},
 			};			
-			var game = new Game(map);
+			var game = new Game(new Board(map));
 			
 			int score = game.Run();
 			
@@ -67,7 +67,7 @@ namespace Solver
 				{5,6,1,4,5,6,1,2},
 				{1,2,3,6,1,2,3,4},
 			};			
-			var game = new Game(map);
+			var game = new Game(new Board(map));
 			
 			int score = game.Run();
 			
@@ -97,7 +97,7 @@ namespace Solver
 				{5,4,5,2,3,6,1,2},
 				{1,6,1,4,5,2,3,4},
 			};			
-			var game = new Game(map);
+			var game = new Game(new Board(map));
 			
 			int score = game.Run();
 			
@@ -127,7 +127,7 @@ namespace Solver
 				{5,4,5,2,3,6,1,2},
 				{1,6,1,4,5,2,3,4},
 			};			
-			var game = new Game(map);
+			var game = new Game(new Board(map));
 			
 			int score = game.Run();
 			

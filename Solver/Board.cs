@@ -74,5 +74,12 @@ namespace Solver
 			return false;
 		}
 		
+		
+		public Board Copy()
+		{
+			byte[,] t = new byte[8,8];
+			Array.Copy(_map,t, _map.Length);
+			return new Board(t);
+		}
 	}
 }
