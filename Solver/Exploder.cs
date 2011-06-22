@@ -26,16 +26,17 @@ namespace Solver
 			_explosions = new Explosions();
 		}
 
-		int Walk(Point start, Vector offset)
+		int Walk(byte colour, Point start, Vector offset)
 		{
 			Point next = start+offset;
-			if(_board.SameColour(start,next))
-				return 1 + Walk(next, offset);
+			if(_board.SameColour(colour, next))
+				return 1 + Walk(colour, next, offset);
 			return 1;
 		}
 		int Mark(Point start, Vector offset)
 		{
-			int count = Walk(start, offset);
+			var colour = _board[start];
+			int count = Walk(colour, start, offset);
 			if(count >= 3)
 				_explosions.AddRange(start, start+offset*(count-1));
 			return count;
