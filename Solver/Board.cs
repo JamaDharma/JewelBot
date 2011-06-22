@@ -90,11 +90,9 @@ namespace Solver
 		
 		public BigInteger GetCode()
 		{
-			BigInteger code = 0;
-			
-			Board.WalkMap((i,j)=> code = (code<<3)+_map[i,j]);
-			
-			return code;
+			var t = new byte[_map.Length];
+			Board.WalkMap((i,j)=> t[8*i+j] = _map[i,j]);
+			return new BigInteger(t);
 		}
 	}
 }
