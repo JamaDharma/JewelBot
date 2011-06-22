@@ -38,11 +38,11 @@ namespace GodlySolver
 				{0,0,0,0,0,0,0,0},
 				{0,0,0,0,0,0,0,0},
 			};			
-			var game = new Game(new Board(map));
+			var board = new Board(map);
 			
-			game.Implode();
+			new Imploder(board).Implode();
 			
-			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], game.Board[i,j], "i:"+i+" j:"+j));
+			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], board[i,j], "i:"+i+" j:"+j));
 		}
 		[Test]
 		public void Everything()
@@ -67,11 +67,11 @@ namespace GodlySolver
 				{1,1,1,1,1,1,1,1},
 				{1,1,1,1,1,1,1,1},
 			};			
-			var game = new Game(new Board(map));
+			var board = new Board(map);
 			
-			game.Implode();
+			new Imploder(board).Implode();
 			
-			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], game.Board[i,j], "i:"+i+" j:"+j));
+			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], board[i,j], "i:"+i+" j:"+j));
 		}
 		[Test]
 		public void SimpleEmpty()
@@ -96,11 +96,11 @@ namespace GodlySolver
 				{0,0,0,0,0,0,0,0},
 				{0,0,1,2,1,0,0,0},
 			};			
-			var game = new Game(new Board(map));
+			var board = new Board(map);
 			
-			game.Implode();
+			new Imploder(board).Implode();
 			
-			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], game.Board[i,j], "i:"+i+" j:"+j));
+			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], board[i,j], "i:"+i+" j:"+j));
 		}
 		[Test]
 		public void SimpleFull()
@@ -125,11 +125,11 @@ namespace GodlySolver
 				{1,1,1,1,1,1,1,1},
 				{1,1,1,1,1,1,1,1},
 			};			
-			var game = new Game(new Board(map));
+			var board = new Board(map);
 			
-			game.Implode();
+			new Imploder(board).Implode();
 			
-			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], game.Board[i,j], "i:"+i+" j:"+j));
+			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], board[i,j], "i:"+i+" j:"+j));
 		}
 		
 		[Test]
@@ -155,11 +155,11 @@ namespace GodlySolver
 				{1,0,0,0,5,2,0,3},
 				{4,0,1,0,1,1,1,1},
 			};			
-			var game = new Game(new Board(map));
+			var board = new Board(map);
 			
-			game.Implode();
+			new Imploder(board).Implode();
 			
-			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], game.Board[i,j], "i:"+i+" j:"+j));
+			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], board[i,j], "i:"+i+" j:"+j));
 		}
 
 		[Test]
@@ -184,11 +184,11 @@ namespace GodlySolver
 				{4,3,2,1,0,0,0,0},
 				{1,2,3,4,0,0,0,0},
 			};
-			var game = new Game(new Board(map));
+			var board = new Board(map);
 			
-			game.Implode();
+			new Imploder(board).Implode();
 			
-			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], game.Board[i,j], "i:"+i+" j:"+j));
+			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], board[i,j], "i:"+i+" j:"+j));
 		}
 	}
 }

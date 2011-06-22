@@ -25,7 +25,7 @@ namespace GodlySolver
 
 		public static int Result(Board board, IEnumerable<Move> moves)
 		{
-			var game = new Game(board);
+			var game = Game.CreateLite(board);
 			int score = game.Run();
 			foreach(var move in moves)
 			{
@@ -49,7 +49,7 @@ namespace GodlySolver
 		public Solution Solve(int deepness)
 		{
 			deepness--;
-			int score = new Game(_board).Run();
+			int score = Game.CreateLite(_board).Run();
 			if(deepness < 0)
 				return new Solution(score);
 

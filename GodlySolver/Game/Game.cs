@@ -11,31 +11,29 @@ using System.Linq;
 
 namespace GodlySolver
 {
-
 	/// <summary>
 	/// Description of Game.
 	/// </summary>
 	public class Game
 	{
-		public Board Board{get; private set;}
-		Exploder exploder;
-		Imploder imploder;
-		
-		public Game(Board board)
+		static public Game CreateLite(Board board)
 		{
-			Board = board;
-			exploder = new Exploder(Board);
-			imploder = new Imploder(Board);
+			return new Game(board, new Imploder(board));
+		}
+		static public Game CreateReal(Board board)
+		{
+			return new Game(board, new Filler(board));
 		}
 		
-		internal int Explode()
-		{
-			return exploder.Explode();
-		}
+		Board _board;
+		Exploder _exploder;
+		IImploder _imploder;
 		
-		internal void Implode()
+		Game(Board board, IImploder imploder)
 		{
-			imploder.Implode();
+			_board = board;
+			_exploder = new Exploder(_board);
+			_imploder = imploder;;
 		}
 		
 		public int Run()
@@ -43,13 +41,12 @@ namespace GodlySolver
 			int turn = 1;
 			int score = 0;
 			int turnScore;
-			while((turnScore = exploder.Explode())>0)
+			while((turnScore = _exploder.Explode())>0)
 			{
 				score += turnScore* turn++;
-				imploder.Implode();
+				_imploder.Implode();
 			}
 			return score;
 		}
 	}
-		
 }

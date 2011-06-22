@@ -40,13 +40,13 @@ namespace GodlySolver
 				{0,0,0,0,0,0,0,0},
 				{1,2,1,0,0,0,0,0},
 			};			
-			var game = new Game(new Board(map));
+			var board = new Board(map);
 			
-			int score = game.Explode();
+			int score = new Exploder(board).Explode();
 			
 			Assert.AreEqual(90, score);
 			
-			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], game.Board[i,j]));
+			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], board[i,j]));
 		}
 		[Test]
 		public void Whicked()
@@ -71,13 +71,13 @@ namespace GodlySolver
 				{0,0,0,0,0,0,0,0},
 				{0,0,0,0,0,0,0,0},
 			};			
-			var game = new Game(new Board(map));
+			var board = new Board(map);
 			
-			int score = game.Explode();
+			int score = new Exploder(board).Explode();
 			
 			Assert.AreEqual(150, score);
 			
-			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], game.Board[i,j]));
+			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], board[i,j]));
 		}
 		[Test]
 		public void Corners()
@@ -102,13 +102,13 @@ namespace GodlySolver
 				{0,0,0,0,0,0,0,0},
 				{0,0,0,0,0,0,0,0},
 			};			
-			var game = new Game(new Board(map));
+			var board = new Board(map);
 			
-			int score = game.Explode();
+			int score = new Exploder(board).Explode();
 			
 			Assert.AreEqual(360, score);
 			
-			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], game.Board[i,j]));
+			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], board[i,j]));
 		}
 	}
 }

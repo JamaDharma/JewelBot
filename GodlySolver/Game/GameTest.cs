@@ -36,13 +36,14 @@ namespace GodlySolver
 				{5,6,1,2,3,4,5,6},
 				{1,2,3,4,5,6,1,2},
 				{3,4,5,6,1,2,3,4},
-			};			
-			var game = new Game(new Board(map));
+			};
 			
-			int score = game.Run();
+			var board = new Board(map);
+			
+			int score = Game.CreateLite(board).Run();
 			
 			Assert.AreEqual(0,score);
-			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], game.Board[i,j], "i:"+i+" j:"+j));
+			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], board[i,j], "i:"+i+" j:"+j));
 		}
 		[Test]
 		public void One()
@@ -67,12 +68,12 @@ namespace GodlySolver
 				{5,6,1,4,5,6,1,2},
 				{1,2,3,6,1,2,3,4},
 			};			
-			var game = new Game(new Board(map));
+			var board = new Board(map);
 			
-			int score = game.Run();
+			int score = Game.CreateLite(board).Run();
 			
 			Assert.AreEqual(30,score);
-			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], game.Board[i,j], "i:"+i+" j:"+j));
+			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], board[i,j], "i:"+i+" j:"+j));
 		}
 		[Test]
 		public void Two()
@@ -97,12 +98,12 @@ namespace GodlySolver
 				{5,4,5,2,3,6,1,2},
 				{1,6,1,4,5,2,3,4},
 			};			
-			var game = new Game(new Board(map));
+			var board = new Board(map);
 			
-			int score = game.Run();
+			int score = Game.CreateLite(board).Run();
 			
 			Assert.AreEqual(150,score);
-			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], game.Board[i,j], "i:"+i+" j:"+j));
+			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], board[i,j], "i:"+i+" j:"+j));
 		}
 		[Test]
 		public void Three()
@@ -127,12 +128,12 @@ namespace GodlySolver
 				{5,4,5,2,3,6,1,2},
 				{1,6,1,4,5,2,3,4},
 			};			
-			var game = new Game(new Board(map));
+			var board = new Board(map);
 			
-			int score = game.Run();
+			int score = Game.CreateLite(board).Run();
 			
 			Assert.AreEqual(240,score);
-			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], game.Board[i,j], "i:"+i+" j:"+j));
+			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], board[i,j], "i:"+i+" j:"+j));
 		}
 	}
 }
