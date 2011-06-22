@@ -13,6 +13,7 @@ using System.Numerics;
 namespace GodlySolver
 {
 
+
 	/// <summary>
 	/// Description of Solver.
 	/// </summary>
@@ -20,7 +21,7 @@ namespace GodlySolver
 	{
 		public static int Count = 0;
 		public static int Limit = 3;
-		public static readonly Dictionary<BigInteger, Solution> Cash = new Dictionary<BigInteger, Solution>();
+		public static readonly Cache Cash = new Cache();
 
 		public static int Result(Board board, IEnumerable<Move> moves)
 		{
@@ -43,33 +44,30 @@ namespace GodlySolver
 		
 		public Solution Solve()
 		{
-			return Solve(0);
+			return Solve(Limit);
 		}
 		public Solution Solve(int deepness)
 		{
-			deepness++;
+			deepness--;
 			int score = new Game(_board).Run();
+			if(deepness < 0)
+			{
+				return new Solution(score);
+			}
+
 			var bcode = _board.GetCode();
-			Solution bestSolution = new Solution();
-			if(Cash.TryGetValue(bcode, out bestSolution))
-			{
-				bestSolution = bestSolution.Copy();
-				bestSolution.Score += score;
-				return bestSolution;
-			}
-			
-			bestSolution = new Solution();
-			if(deepness > Limit)
+			Solution bestSolution = Cash.Get(deepness, bcode);
+			if(bestSolution != null)
 			{
 				bestSolution.Score += score;
 				return bestSolution;
 			}
-			
+
 			Count++;
-			
+			Move bestMove = null;
+			bestSolution = new Solution();
 			var moves = new GeoScanner(_board).GetDeposits();
 
-			Move bestMove = null;
 			foreach(var move in moves)
 			{
 				Board t = _board.Copy();
@@ -86,10 +84,9 @@ namespace GodlySolver
 			if(bestSolution.Score != 0)
 				bestSolution.Moves.Push(bestMove);
 			
-			Cash.Add(bcode, bestSolution.Copy());
+			Cash.Add(deepness, bcode, bestSolution);
 			
 			bestSolution.Score += score;
-
 			
 			return bestSolution;
 		}

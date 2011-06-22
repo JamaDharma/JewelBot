@@ -22,6 +22,11 @@ namespace GodlySolver
 		{
 		}
 		
+		public Solution(int score)
+			: this(score, new Stack<Move>())
+		{
+		}
+		
 		public Solution(int score, Stack<Move> moves)
 		{
 			Score = score;
