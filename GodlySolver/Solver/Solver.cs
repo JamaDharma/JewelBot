@@ -10,21 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Numerics;
 
-namespace Solver
+namespace GodlySolver
 {
-	public class Solution
-	{
-		public int Score = 0;
-		public Stack<Move> Moves = new Stack<Move>();
-		
-		public Solution Copy()
-		{
-			var s = new Solution();
-			s.Score = Score;
-			s.Moves = new Stack<Move>(Moves);
-			return s;
-		}
-	}
+
 	/// <summary>
 	/// Description of Solver.
 	/// </summary>

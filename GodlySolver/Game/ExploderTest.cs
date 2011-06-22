@@ -12,7 +12,7 @@ using System.Linq;
 using System.Collections.Generic;
 using NUnit.Framework;
 
-namespace Solver
+namespace GodlySolver
 {
 	[TestFixture]
 	public class ExploderTest

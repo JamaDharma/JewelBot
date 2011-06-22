@@ -8,7 +8,7 @@
  */
 using System;
 
-namespace Solver
+namespace GodlySolver
 {
 	public class Move
 	{

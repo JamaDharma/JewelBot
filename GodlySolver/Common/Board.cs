@@ -10,7 +10,7 @@ using System;
 using System.Linq;
 using System.Numerics;
 
-namespace Solver
+namespace GodlySolver
 {
 	public class Board
 	{

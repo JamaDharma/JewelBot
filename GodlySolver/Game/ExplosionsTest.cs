@@ -9,7 +9,7 @@
 using System;
 using NUnit.Framework;
 
-namespace Solver
+namespace GodlySolver
 {
 	[TestFixture]
 	public class ExplosionsTest

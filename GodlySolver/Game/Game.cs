@@ -9,7 +9,7 @@
 using System;
 using System.Linq;
 
-namespace Solver
+namespace GodlySolver
 {
 
 	/// <summary>

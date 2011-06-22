@@ -10,7 +10,7 @@ using System;
 using System.Diagnostics;
 using NUnit.Framework;
 
-namespace Solver
+namespace GodlySolver
 {
 	[TestFixture]
 	public class SolverTest
