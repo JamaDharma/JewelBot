@@ -19,8 +19,8 @@ namespace Solver
 	
 	public class Point
 	{
-		public int X { get; private set; }
-		public int Y { get; private set; }
+		public readonly int X;
+		public readonly int Y;
 
 		public Point(int x, int y) {
 			this.X = x;
@@ -69,8 +69,8 @@ namespace Solver
 	
 	public class Vector
 	{
-		public int X { get; private set; }
-		public int Y { get; private set; }
+		public readonly int X;
+		public readonly int Y;
 
 		public Vector(int x, int y) {
 			this.X = x;
