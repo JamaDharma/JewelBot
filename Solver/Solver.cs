@@ -49,6 +49,7 @@ namespace Solver
 		}
 		public Solution Solve(int deepness)
 		{
+			Count++;
 			deepness++;
 			int score = new Game(_board).Run();
 			Solution bestSolution = new Solution();

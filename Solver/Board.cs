@@ -7,10 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Solver
 {
@@ -81,19 +78,14 @@ namespace Solver
 		{
 			return new Board(_map);
 		}
-		
-		public IEnumerable<string> Presentation
+
+		public override string ToString()
 		{
-			get
-			{
-				for (int i = 0; i < 8; i++)
-				{
-					var res = new StringBuilder();
-					for (int j = 0; j < 8; j++)
-						res.Append(" "+_map[i,j]);
-					yield return res.ToString();
-				}
-			}
+			Func<int, String> printLine = i => 
+				String.Join(" ", Enumerable.Range(0, 8).Select(j =>_map[i,j].ToString()).ToArray())+"\n";
+
+			return String.Join("", Enumerable.Range(0, 8).Select(printLine).ToArray());
 		}
+
 	}
 }
