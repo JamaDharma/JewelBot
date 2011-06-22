@@ -51,21 +51,37 @@ namespace GodlySolver
 			deepness--;
 			int score = new Game(_board).Run();
 			if(deepness < 0)
-			{
 				return new Solution(score);
-			}
 
+			Solution bestSolution = FindBestMoveMemoised(deepness);
+			
+			bestSolution.Score += score;
+			
+			return bestSolution;
+		}
+		
+		Solution FindBestMoveMemoised(int deepness)
+		{
+			
 			var bcode = _board.GetCode();
+			
 			Solution bestSolution = Cash.Get(deepness, bcode);
-			if(bestSolution != null)
-			{
-				bestSolution.Score += score;
-				return bestSolution;
-			}
 
+			if(bestSolution == null)
+			{
+				bestSolution = FindBestMove(deepness);
+				Cash.Add(deepness, bcode, bestSolution);
+			}
+			
+			return bestSolution;
+		}
+		
+		Solution FindBestMove(int deepness)
+		{
 			Count++;
 			Move bestMove = null;
-			bestSolution = new Solution();
+			var bestSolution = new Solution();
+			
 			var moves = new GeoScanner(_board).GetDeposits();
 
 			foreach(var move in moves)
@@ -80,15 +96,11 @@ namespace GodlySolver
 				}
 			}
 			
-			
 			if(bestSolution.Score != 0)
 				bestSolution.Moves.Push(bestMove);
 			
-			Cash.Add(deepness, bcode, bestSolution);
-			
-			bestSolution.Score += score;
-			
 			return bestSolution;
 		}
+		
 	}
 }

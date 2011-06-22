@@ -95,7 +95,6 @@ namespace GodlySolver
 			Assert.AreEqual(30,sln.Score);
 		}	
 		
-				
 		[Test]
 		public void Complex()
 		{
