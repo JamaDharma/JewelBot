@@ -46,14 +46,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Competitor.cs" />
+    <Compile Include="GoglyStrategies\CleverStrategy.cs" />
+    <Compile Include="GoglyStrategies\GenericStrategy.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RottedStrategies\RottedStrategy.cs" />
+    <Compile Include="RottedStrategies\RottedTools.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GodlySolver\GodlySolver.csproj">
       <Project>{663D9DC3-8077-4327-8E05-FF2EC6533E0A}</Project>
       <Name>GodlySolver</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JewelBot\JewelBot.csproj">
+      <Project>{C6C03230-B5A6-4DBB-9323-3ACC82CABF40}</Project>
+      <Name>JewelBot</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GoglyStrategies" />
+    <Folder Include="RottedStrategies" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

@@ -8,6 +8,8 @@
  */
 using System;
 using System.Collections.Generic;
+using Arena.GoglyStrategies;
+using Arena.RottedStrategies;
 using GodlySolver;
 
 namespace Arena
@@ -35,6 +37,12 @@ namespace Arena
 				new Competitor(new GenericStrategy(3,1), "Strategy level:3 moves:1  : ", 0),
 				new Competitor(new GenericStrategy(3,2), "Strategy level:3 moves:2  : ", 0),
 				new Competitor(new GenericStrategy(3,3), "Strategy level:3 moves:3  : ", 0),
+				new Competitor(new RottedStrategy(1), 	 "Rotted Strategy moves:1   : ", 0),
+				new Competitor(new RottedStrategy(2), 	 "Rotted Strategy moves:2   : ", 0),
+				new Competitor(new CleverStrategy(2,1),  "Clever level:2 moves:1    : ", 0),
+				new Competitor(new CleverStrategy(3,1),  "Clever level:3 moves:1    : ", 0),
+				new Competitor(new CleverStrategy(4,1),  "Clever level:4 moves:1    : ", 0),
+				new Competitor(new CleverStrategy(4,2),  "Clever level:4 moves:2    : ", 0),
 			};
 			
 			while(true)
