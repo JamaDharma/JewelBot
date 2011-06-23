@@ -57,6 +57,7 @@
     <Compile Include="Game\GameTest.cs" />
     <Compile Include="Game\IImploder.cs" />
     <Compile Include="Solver\Cache.cs" />
+    <Compile Include="Solver\Evaluator.cs" />
     <Compile Include="Solver\GeoScanner.cs" />
     <Compile Include="Solver\GeoScannerTest.cs" />
     <Compile Include="Game\Imploder.cs" />

@@ -14,6 +14,8 @@ namespace GodlySolver
 {
 
 
+
+	
 	/// <summary>
 	/// Description of Solver.
 	/// </summary>
@@ -23,18 +25,6 @@ namespace GodlySolver
 		public static int Limit = 3;
 		public static readonly Cache Cash = new Cache();
 
-		public static int Result(Board board, IEnumerable<Move> moves)
-		{
-			var game = Game.CreateLite(board);
-			int score = game.Run();
-			foreach(var move in moves)
-			{
-				move.MoveBoard(board);
-				score+=game.Run();
-			}
-			return score;
-		}
-		
 		Board _board;
 		
 		public Solver(Board board)

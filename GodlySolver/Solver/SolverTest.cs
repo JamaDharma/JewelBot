@@ -139,8 +139,8 @@ namespace GodlySolver
 				new Move(new Point(6,0),new Point(7,0)),
 			};
 			
-			int res = Solver.Result(new Board(map), sln.Moves);
-			int rotRes = Solver.Result(new Board(map), rotSln);
+			int res = Evaluator.EvaluateLite(new Board(map), sln.Moves);
+			int rotRes = Evaluator.EvaluateLite(new Board(map), rotSln);
 
 			Assert.AreEqual(420, res);
 			Assert.AreEqual(res ,sln.Score);
@@ -166,7 +166,7 @@ namespace GodlySolver
 
 			var sln = new Solver(new Board(map)).Solve();
 			
-			int res = Solver.Result(new Board(map), sln.Moves);
+			int res = Evaluator.EvaluateLite(new Board(map), sln.Moves);
 
 			Assert.AreEqual(570, res);
 			Assert.AreEqual(res ,sln.Score);
@@ -190,7 +190,7 @@ namespace GodlySolver
 			Solver.Limit = 5;
 			var sln = new Solver(new Board(map)).Solve();
 			
-			int res = Solver.Result(new Board(map), sln.Moves);
+			int res = Evaluator.EvaluateLite(new Board(map), sln.Moves);
 
 			Assert.AreEqual(690, res);
 			Assert.AreEqual(res ,sln.Score);
@@ -214,7 +214,7 @@ namespace GodlySolver
 			Solver.Limit = 6;
 			var sln = new Solver(new Board(map)).Solve();
 			
-			int res = Solver.Result(new Board(map), sln.Moves);
+			int res = Evaluator.EvaluateLite(new Board(map), sln.Moves);
 			
 			Assert.AreEqual(720, res);
 			Assert.AreEqual(res ,sln.Score);
