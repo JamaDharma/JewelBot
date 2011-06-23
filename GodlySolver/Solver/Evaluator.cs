@@ -26,11 +26,11 @@ namespace GodlySolver
 		
 		static int Evaluate(Board board, Game game, IEnumerable<Move> moves)
 		{
-			int score = game.Run();
+			int score = game.LiteRun();
 			foreach(var move in moves)
 			{
 				move.MoveBoard(board);
-				score+=game.Run();
+				score+=game.LiteRun();
 			}
 			return score;
 		}

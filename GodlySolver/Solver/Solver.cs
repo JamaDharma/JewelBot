@@ -39,7 +39,7 @@ namespace GodlySolver
 		public Solution Solve(int deepness)
 		{
 			deepness--;
-			int score = Game.CreateLite(_board).Run();
+			int score = Game.CreateLite(_board).LiteRun();
 			if(deepness < 0)
 				return new Solution(score);
 

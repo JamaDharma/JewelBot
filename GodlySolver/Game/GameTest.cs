@@ -40,7 +40,7 @@ namespace GodlySolver
 			
 			var board = new Board(map);
 			
-			int score = Game.CreateLite(board).Run();
+			int score = Game.CreateLite(board).LiteRun();
 			
 			Assert.AreEqual(0,score);
 			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], board[i,j], "i:"+i+" j:"+j));
@@ -70,7 +70,7 @@ namespace GodlySolver
 			};			
 			var board = new Board(map);
 			
-			int score = Game.CreateLite(board).Run();
+			int score = Game.CreateLite(board).LiteRun();
 			
 			Assert.AreEqual(30,score);
 			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], board[i,j], "i:"+i+" j:"+j));
@@ -100,7 +100,7 @@ namespace GodlySolver
 			};			
 			var board = new Board(map);
 			
-			int score = Game.CreateLite(board).Run();
+			int score = Game.CreateLite(board).LiteRun();
 			
 			Assert.AreEqual(150,score);
 			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], board[i,j], "i:"+i+" j:"+j));
@@ -130,7 +130,7 @@ namespace GodlySolver
 			};			
 			var board = new Board(map);
 			
-			int score = Game.CreateLite(board).Run();
+			int score = Game.CreateLite(board).LiteRun();
 			
 			Assert.AreEqual(240,score);
 			Board.WalkMap((i,j)=>Assert.AreEqual(mapRes[i,j], board[i,j], "i:"+i+" j:"+j));

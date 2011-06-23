@@ -36,7 +36,13 @@ namespace GodlySolver
 			_imploder = imploder;;
 		}
 		
-		public int Run()
+		public int CarefulRun()
+		{
+			_imploder.Implode();
+			return LiteRun();
+		}
+		
+		public int LiteRun()
 		{
 			int turn = 1;
 			int score = 0;
