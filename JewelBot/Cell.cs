@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JewelBot
 {
-    class Cell
+    public class Cell
     {
         public static readonly Cell Zero = new Cell(0,0);
         public Cell(int i, int j)
@@ -21,7 +21,7 @@ namespace JewelBot
         }
     }
 
-    class Offset
+    public class Offset
     {
         public Offset(int di, int dj)
         {

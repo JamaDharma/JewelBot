@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JewelBot
 {
-    class Move
+    public class Move
     {
         public Cell Cell { get; set; }
         public bool Vertical { get; set; }
@@ -15,7 +15,7 @@ namespace JewelBot
         }
     }
 
-    static class MoveUtils
+    public static class MoveUtils
     {
         public static Cell DestinationCell(this Move move)
         {

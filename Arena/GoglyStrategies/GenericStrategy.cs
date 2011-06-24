@@ -27,7 +27,6 @@ namespace Arena.GoglyStrategies
 		
 		public int Test(Board board)
 		{
-			Solver.Cash.Clear();
 			int result = 0;
 			var solver = new Solver(board);
 	

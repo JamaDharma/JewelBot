@@ -45,14 +45,16 @@ namespace JewelBot
 
         public static void Print(this Coin[,] state)
         {
-            for (int i = 0; i < 8; i++)
+            /*for (int i = 0; i < 8; i++)
             {
+            	Console.Write("{");
                 for (int j = 0; j < 8; j++)
                 {
-                    Console.Write(getCoinChar(state[i, j]));
+                	Console.Write(((int)state[i, j])+",");
                 }
+            	Console.Write("},");
                 Console.WriteLine();
-            }
+            }*/
         }
     }
 }

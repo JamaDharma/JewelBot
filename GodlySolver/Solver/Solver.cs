@@ -23,13 +23,19 @@ namespace GodlySolver
 	{
 		public static int Count = 0;
 		public static int Limit = 3;
-		public static readonly Cache Cash = new Cache();
 
 		Board _board;
+		Cache _cash = new Cache();
 		
 		public Solver(Board board)
+			: this(board, new Cache())
+		{
+		}
+
+		public Solver(Board board, Cache cash)
 		{
 			_board = board;
+			_cash = cash;
 		}
 		
 		public Solution Solve()
@@ -55,12 +61,12 @@ namespace GodlySolver
 			
 			var bcode = _board.GetCode();
 			
-			Solution bestSolution = Cash.Get(deepness, bcode);
+			Solution bestSolution = _cash.Get(deepness, bcode);
 
 			if(bestSolution == null)
 			{
 				bestSolution = FindBestMove(deepness);
-				Cash.Add(deepness, bcode, bestSolution);
+				_cash.Add(deepness, bcode, bestSolution);
 			}
 			
 			return bestSolution;
@@ -78,8 +84,9 @@ namespace GodlySolver
 			{
 				Board t = _board.Copy();
 				move.MoveBoard(t);
-				var sol = new Solver(t).Solve(deepness);
-				if(sol.Score > bestSolution.Score)
+				var sol = new Solver(t, _cash).Solve(deepness);
+				//prefer low movies
+				if(sol.Score >= bestSolution.Score)
 				{
 					bestSolution = sol;
 					bestMove = move;

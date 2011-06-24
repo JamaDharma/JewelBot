@@ -31,12 +31,6 @@ namespace GodlySolver
             }
         }
 		
-		[SetUp]
-		public void SetUp()
-		{
-			Solver.Cash.Clear();
-		}
-		
 		[Test]
 		public void Empty()
 		{
@@ -242,7 +236,6 @@ namespace GodlySolver
 			{
 				Solver.Count = 0;
 				Solver.Limit = i;
-				Solver.Cash.Clear();
 				time(work, () => string.Format("limit: {0}  count:{1}  ", Solver.Limit, Solver.Count));
 			}
 			

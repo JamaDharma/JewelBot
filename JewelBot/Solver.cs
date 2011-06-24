@@ -5,19 +5,15 @@ using System.Text;
 
 namespace JewelBot
 {
-    class Solver
+    public class Solver
     {
 
         public static void PrintPlan(Coin[,] state, IEnumerable<Move> plan)
         {
-            int cnt = 0;
             foreach (var move in plan)
             {
-                Console.WriteLine("step " + cnt);
                 state.Print();
-                Console.WriteLine("making move: " + move);
                 var moveRes = MakeMove(state, move);
-                Console.WriteLine("destroyed " + moveRes.Item2);
                 state = moveRes.Item1;
             }
         }

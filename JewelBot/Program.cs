@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Runtime.InteropServices;
-using System.Threading;
-using System.Drawing;
 using System.Diagnostics;
-using System.IO;
+using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading;
+using System.Windows.Forms;
+
+using RealStrategicHinter;
 
 namespace JewelBot
 {
-    enum Coin
+    public enum Coin
     {
         None=0,
         Black,
@@ -41,57 +43,21 @@ namespace JewelBot
 
         static void Main(string[] args)
         {
-            var dir = ".";
-            if (args.Length > 0)
-                dir = args[0];
-            var scale = 2;
-            if (args.Length > 1)
-                scale = int.Parse(args[1]);
-            var sleep = 30000;
-            if (args.Length > 2)
-                sleep = int.Parse(args[2])*1000;
-            while (true)
-            {
-                makeScreenshot(dir, scale);
-                mySleep(sleep);
-            }
+        	//readBoardInfo();
+        	//Console.ReadLine();
+        	runStarJewelledBot(args);
         }
 
         static void runStarJewelledBot(string[] args)
         {
-
-                        
-
-/*            while (true)
-            {
-                Thread.Sleep(10);
-                WinApi.doWithDesktopDc(dc =>
-                {
-                    using (var gr = Graphics.FromHdc(dc))
-                        gr.FillRectangle(new SolidBrush(Color.Black), 0, 0, 1000, 800);
-                });
-                Thread.Sleep(10);
-                Console.WriteLine("qwe");
-            }*/
-
-           // Thread.Sleep(1000);
-           // var form = new HintForm();
-           // form.Show();
-            //form.TopLevel = true;
-           // while (true) { Application.DoEvents(); form.BringToFront(); }
-
-
-            //var board = readBoardInfo();
-            var board = new BoardInfo { BottomRight = new Point { X = 1882, Y = 677 }, TopLeft = new Point { X = 1306, Y = 101 } };
+            var board = new BoardInfo { BottomRight = new Point { X = 1880, Y = 675 }, TopLeft = new Point { X = 1305, Y = 100 } };
 
             var hinter = new Hinter(board);
 
             while(true) {
                 var colorsMap = time(() => readMap(board));
                 var coinsMap = parseMap(colorsMap);
-                //printColorsMap(colorsMap);
-                //printMap(coinsMap);
-                var moves = time(() => Solver.GetBestMoveSequence(coinsMap), "solved");
+                var moves = time(() => StrategicHinter.GetBestMoveSequence(coinsMap.ToBoard()).Take(2).Select(m=>m.Convert()), "solved");
                 hinter.hideAll();
                 showHints(hinter, moves);
                 mySleep(300);
@@ -118,20 +84,12 @@ namespace JewelBot
 
         private static void showHints(Hinter hinter, IEnumerable<Move> moves)
         {
-            Color[] colors = new[] { Color.Red, Color.Orange, Color.Yellow, Color.Lime, Color.Green, Color.Cyan, Color.LightBlue, Color.Blue };
+            Color[] colors = new[] { Color.Red, Color.Yellow, Color.Green, Color.LightBlue };
             int cnt = 0;
             foreach (var move in moves)
             {
                 hinter.show(move.Cell.I, move.Cell.J, move.Vertical, colors[cnt++]);
-                //break;
             }
-            /*for (int i = 0; i < 8; i++)
-                for (int j = 0; j < 8; j++)
-                    foreach(var vert in new[]{true, false})
-                    {
-                        if (isGoodMove(map, i, j, vert))
-                            hinter.show(i, j, vert);
-                    }*/
         }
 
 

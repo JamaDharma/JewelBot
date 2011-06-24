@@ -63,6 +63,7 @@
     <Compile Include="BoardUtils.cs" />
     <Compile Include="Cell.cs" />
     <Compile Include="Debug.cs" />
+    <Compile Include="GodlyTools.cs" />
     <Compile Include="Hinter.cs" />
     <Compile Include="HintForm.cs">
       <SubType>Form</SubType>
@@ -96,6 +97,16 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GodlySolver\GodlySolver.csproj">
+      <Project>{663D9DC3-8077-4327-8E05-FF2EC6533E0A}</Project>
+      <Name>GodlySolver</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RealStrategicHinter\RealStrategicHinter.csproj">
+      <Project>{094E9F38-1180-403E-9C17-5A68B101E7F3}</Project>
+      <Name>RealStrategicHinter</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
